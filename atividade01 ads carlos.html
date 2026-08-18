@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopédia Digital: Os Arquitetos da Computação e da Internet</title>
+    <style>
+        :root {
+            --bg-deep: #05070f;
+            --bg-surface: #0e1322;
+            --bg-card: #151d33;
+            --primary: #38bdf8;
+            --secondary: #a78bfa;
+            --accent-green: #34d399;
+            --accent-orange: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glow: rgba(56, 189, 248, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 5rem;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #111827 0%, var(--bg-deep) 100%);
+            text-align: center;
+            padding: 6rem 1.5rem 4rem;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #38bdf8, #a78bfa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1.5px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text-muted);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #38bdf8, #a78bfa, #34d399, #f59e0b, #e11d48, #2563eb);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 4px;
+        }
+
+        .container {
+            padding: 25px 60px;
+            position: relative;
+            width: 50%;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: -12px;
+            background-color: var(--bg-deep);
+            border: 4px solid var(--primary);
+            top: 40px;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -12px; }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+            border: 1px solid #1e293b;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background-color: #1a243d;
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        .era-tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 18px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .image-box {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            background-color: #0b0f19;
+            border: 1px solid #1e293b;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .image-box img {
+            transform: scale(1.06);
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-more {
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: #05070f;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn-more:hover { transform: scale(1.02); opacity: 0.95; }
+
+        .btn-link {
+            padding: 10px 22px;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid #334155;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        .btn-link:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.2);
+        }
+
+        /* --- INTERFACE MODAL ACADÊMICA --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 5, 10, 0.9);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background-color: var(--bg-surface);
+            padding: 3.5rem;
+            border-radius: 28px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid #2d3748;
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.9);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .close-modal:hover { color: var(--text-main); }
+
+        .modal-body h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+
+        .modal-body h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .modal-body h4 {
+            margin-top: 2rem;
+            color: var(--primary);
+            font-size: 1.25rem;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-body p {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            text-align: justify;
+            white-space: pre-line;
+        }
+
+        .highlight-box {
+            margin-top: 2.5rem;
+            padding: 22px;
+            background-color: rgba(52, 211, 153, 0.04);
+            border-left: 5px solid var(--accent-green);
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 0 16px 16px 0;
+        }
+
+        @media (max-width: 900px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 65px; padding-right: 15px; }
+            .container::after { left: 21px; }
+            .right { left: 0; }
+            header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Os Arquitetos da Computação & Internet</h1>
+        <p>Uma imersão documental profunda sobre as mentes revolucionárias que inventaram o hardware eletrônico, reestruturaram a engenharia de software e construíram a espinha dorsal da rede mundial de computadores.</p>
+    </header>
+
+    <main class="timeline">
+
+        <!-- MARCO 1: BASE ANALÍTICA -->
+        <div class="container left">
+            <div class="card" onclick="openContext(
+                'Os Motores Analíticos (Século XIX)',
+                'Charles Babbage & Ada Lovelace',
+                'No Século XIX, a engenharia mundial lidava com tabelas matemáticas e astronômicas impressas manualmente, repletas de erros lógicos catastróficos que causavam desastres logísticos e de navegação.\n\nPara solucionar essa vulnerabilidade estrutural, o engenheiro mecânico britânico Charles Babbage projetou em 1837 a Máquina Analítica. Esse massivo dispositivo, alimentado por um motor a vapor e controlado por cartões perfurados, quebrou paradigmas por ser o primeiro design mecânico universal. O sistema continha os dois componentes primordiais presentes em qualquer arquitetura de PC contemporânea: o "Moinho" (uma Unidade Central de Processamento analógica) e o "Armazém" (um bloco de memória física composto por pilhas de engrenagens capaz de registrar até 1.000 números de 50 dígitos).',
+                'A matemática inglesa Ada Lovelace foi a responsável por traduzir e expandir de forma magistral os manuscritos sobre a máquina de Babbage. Enquanto ele enxergava o dispositivo apenas como um calculador numérico bruto, Lovelace teve a genialidade conceitual de prever que, se a máquina pudesse manipular símbolos lógicos sob regras estruturadas, ela poderia processar qualquer tipo de dado abstrato, incluindo partituras musicais complexas e gráficos digitais.\n\nEm suas famosas anotações anexas ao texto (as "Notas de Ada"), ela detalhou minuciosamente um algoritmo matemático exato passo a passo para orientar a máquina a calcular a sequência complexa dos Números de Bernoulli utilizando os cartões perfurados.',
+                'Ada Lovelace desenvolveu, de forma manuscrita, o primeiríssimo software/algoritmo estruturado para rodar em uma máquina, consagrando-se como a pioneira absoluta da engenharia de software da história humana.'
+            )">
+                <span class="era-tag">Século XIX • Arquitetura Conceitual</span>
+                <h2>Pioneiros das Máquinas Analíticas</h2>
+                <h3>Charles Babbage & Ada Lovelace</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg" alt="Ada Lovelace">
+                </div>
+                <p class="intro-text">O hardware a vapor encontra a primeira lógica algorítmica documentada da história mundial.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/Ada_Lovelace" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 2: ALAN TURING -->
+        <div class="container right">
+            <div class="card" onclick="openContext(
+                'Lógica Universal e Criptoanálise Militar (1936 - 1945)',
+                'Alan Turing & Joan Clarke',
+                'Na década de 1930, os computadores não passavam de equipamentos mecânicos criados exclusivamente para realizar uma única função pré-definida de fábrica.\n\nEm 1936, o matemático britânico Alan Turing transformou o cenário ao publicar o artigo teórico que introduziu a "Máquina de Turing". Ele provou que um único dispositivo lógico abstrato poderia simular qualquer tipo de computação concebível por meio de um sistema de instruções codificadas armazenadas em uma fita magnética móvel, dando origem ao conceito revolucionário de Computador Universal.\n\nDurante a Segunda Guerra Mundial, em Bletchley Park, a aplicação prática dessa teoria tornou-se urgente para interceptar as mensagens criptografadas que as forças navais alemãs geravam diariamente por meio do dispositivo Enigma.',
+                'Alan Turing projetou a máquina eletromecânica de processamento acelerado conhecida como "Bombe", capaz de realizar uma varredura combinatória exaustiva automática para descobrir a configuração diária de chaves da Enigma. Ao seu lado, a matemática Joan Clarke atuou como peça fundamental na divisão secreta Hut 8.\n\nJoan Clarke desenvolveu e dominou de forma magistral técnicas avançadas de criptoanálise baseadas no método "Banburismus", que utilizava sobreposições de tiras de papel perfurado para deduzir a configuração interna dos rotores da Enigma sem precisar testar todas as infinitas combinações possíveis.',
+                'A genialidade conceitual de Turing e o domínio de processamento combinatório de Joan Clarke foram os grandes responsáveis por quebrar o código naval nazista, encurtando a guerra em pelo menos dois anos e lançando as bases físicas da Ciência da Computação moderna.'
+            )">
+                <span class="era-badge">Anos 1930 - 1940 • Lógica Pura</span>
+                <h2>Computador Universal e Criptografia</h2>
+                <h3>Alan Turing & Joan Clarke</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg" alt="Alan Turing">
+                </div>
+                <p class="intro-text">A formalização conceitual da inteligência computacional é aplicada para vencer batalhas de cibersegurança na guerra.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/Alan_Turing" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 3: OS CRIADORES DO ENIAC -->
+        <div class="container left">
+            <div class="card" onclick="openContext(
+                'A Consolidação dos Computadores de Grande Porte (1943 - 1946)',
+                'J. Presper Eckert, John Mauchly & As Programadoras do ENIAC',
+                'Em 1943, o Laboratório de Pesquisa Balística do Exército dos Estados Unidos precisava calcular dezenas de milhares de trajetórias de artilharia militar complexas. A realização manual desses cálculos por equipes humanas de matemáticos levava semanas para cada projétil, o que atrasava severamente as operações táticas.\n\nPara contornar o problema, os engenheiros elétricos John Mauchly e J. Presper Eckert projetaram e construíram no ano de 1946 o ENIAC (Electronic Numerical Integrator and Computer): o primeiríssimo computador eletrônico digital de grande escala e uso geral do planeta. O hardware do monstro era monumental: pesava mais de 30 toneladas, ocupava um salão de 167 metros quadrados, consumia 150 kW de energia e era composto por mais de 17.400 tubos de vácuo (válvulas eletrônicas de calor) acoplados a milhões de conexões soldadas manualmente.',
+                'Embora Eckert e Mauchly tenham assinado e patenteado a estrutura do hardware físico, o ENIAC era um amontoado inútil de metal sem instruções de processamento de software. A programação real e o funcionamento lógico do ENIAC foram confiados a um time de seis matemáticas excepcionais: Jean Bartik, Adele Goldstine, Frances Spence, Kathleen Antonelli, Marlyn Meltzer e Ruth Teitelbaum.\n\nNuma época em que não existiam manuais de instrução, compiladores, telas ou linguagens de código prontas, essas mulheres mapearam toda a arquitetura de circuitos elétricos da máquina. Elas passavam os dias programando o gigante de forma puramente física, mudando e alternando chaves elétricas, alterando conexões de milhares de fios telefônicos pesados e decifrando erros lógicos mecânicos causados pelas válvulas que queimavam a cada poucos minutos.',
+                'As programadoras do ENIAC descobriram como estruturar fluxos de lógica em sub-rotinas e loops elétricos no hardware físico, provando que computadores puramente digitais eram infinitamente mais rápidos que calculadoras analógicas.'
+            )">
+                <span class="era-badge">1946 • O Gigante de Válvulas</span>
+                <h2>Os Criadores da Eletrônica Digital</h2>
+                <h3>Eckert, Mauchly & Mulheres do ENIAC</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Eniac.jpg" alt="O Computador ENIAC">
+                </div>
+                <p class="intro-text">O ENIAC revoluciona a engenharia elétrica digital através de 30 toneladas de cabos estruturados por matemáticas.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/ENIAC" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 4: COMPILADORES -->
+        <div class="container right">
+            <div class="card" onclick="openContext(
+                'A Revolução das Linguagens e o Nascimento do COBOL (1951 - 1959)',
+                'John Bardeen, William Shockley & Grace Hopper',
+                'Até o início dos anos 1950, a expansão comercial dos computadores sofria com dois gargalos terríveis. O primeiro era físico: as válvulas de vidro queimavam constantemente e consumiam muita energia. Isso foi corrigido de forma genial pelos físicos John Bardeen, William Shockley e Walter Brattain ao inventarem o Transistor de Silício na Bell Labs — uma peça minúscula, sólida e fria que reduziu os computadores a um décimo do tamanho anterior.\n\nO segundo gargalo era de desenvolvimento de software: para controlar a máquina, as equipes de engenharia passavam semanas traduzindo problemas de negócios para sequências intermináveis de zeros e uns da linguagem binária pura do hardware, uma tarefa exaustiva e propensa a falhas críticas catastróficas.',
+                'A Contra-Almirante da Marinha dos Estados Unidos, Dra. Grace Hopper, mudou a história do desenvolvimento para sempre em 1952. Ela partiu do princípio inovador de que a programação deveria ser legível por seres humanos normais. Hopper criou o primeiríssimo Compilador da história humana (o sistema A-0) — um programa intermediário revolucionário capaz de receber uma instrução escrita em palavras simples semelhantes ao idioma inglês, interpretar a intenção do programador e traduzir esse texto diretamente para a linguagem de máquina binária interna do processador.\n\nAnos depois, Grace Hopper coordenou o comitê técnico que utilizou seus conceitos de compilação para desenvolver e padronizar o COBOL: a primeira grande linguagem de programação comercial aberta de alto nível do planeta, usada até hoje por bancos mundiais e grandes corporações globais de finanças.',
+                'Ao quebrar a barreira matemática que isolava a programação em binário, Grace Hopper descentralizou o uso do computador, abrindo as portas do mercado comercial corporativo.'
+            )">
+                <span class="era-badge">Anos 1950 • Linguagem Humana</span>
+                <h2>Mestres do Silício e Compiladores</h2>
+                <h3>John Bardeen & Dra. Grace Hopper</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Grace_Hopper.jpg" alt="Grace Hopper">
+                </div>
+                <p class="intro-text">O transistor miniaturiza o hardware físico e os compiladores libertam a humanidade do código binário exaustivo.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/Grace_Hopper" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 5: CORRIDA ESPACIAL -->
+        <div class="container left">
+            <div class="card" onclick="openContext(
+                'A Engenharia de Software da Missão Apollo 11 (1961 - 1969)',
+                'Margaret Hamilton & A Engenharia Espacial do MIT',
+                'Na década de 1960, a computação dava seus primeiros passos na miniaturização de Circuitos Integrados (Chips). O grande desafio da era surgiu quando o presidente John F. Kennedy estabeleceu a meta de enviar astronautas à Lua.\n\nA Administração Nacional da Aeronáutica (NASA) contratou o laboratório do Instituto de Tecnologia de Massachusetts (MIT) para construir os computadores de bordo que comandariam o Módulo de Comando e o Módulo Lunar da espaçonave Apollo 11. O hardware central da espaçonave possuía uma memória extremamente limitada para os padrões de processamento atuais (equivalente a pouco mais de 70 kilobytes), exigindo um software impecável e à prova de falhas.',
+                'A cientista e matemática americana Margaret Hamilton foi nomeada diretora da Divisão de Engenharia de Software do projeto. Ela liderou a equipe que escreveu do zero todo o código de orientação e controle de voo espacial da Apollo 11.\n\nHamilton introduziu conceitos inovadores que moldaram a ciência, como o processamento assíncrono e a filtragem de tarefas por ordem de prioridade. Essa arquitetura lógica provou sua genialidade histórica em 20 de julho de 1969: a apenas três minutos do pouso na Lua, um erro humano ativou o radar de radar acoplado de forma errada, sobrecarregando o computador com dados secundários. Em vez de travar o sistema completamente (o que resultaria em um acidente fatal), o software projetado por Margaret detectou a sobrecarga, descartou as operações de menor importância e priorizou o fornecimento de energia lógica para os propulsores de descida dos astronautas.',
+                'Margaret Hamilton cunhou oficialmente o termo "Engenharia de Software" para dar o respeito e o rigor científico que o desenvolvimento de programas merecia, salvando o pouso histórico do homem na Lua.'
+            )">
+                <span class="era-badge">Anos 1960 • Missão Crítica</span>
+                <h2>Engenharia de Software Espacial</h2>
+                <h3>Margaret Hamilton & Cientistas do MIT</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Margaret_Hamilton_-_Restoration.jpg" alt="Margaret Hamilton">
+                </div>
+                <p class="intro-text">Linhas de código lógico assíncrono evitam uma pane geral de dados minutos antes do pouso humano na Lua.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/Margaret_Hamilton" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 6: ARPANET -->
+        <div class="container right">
+            <div class="card" onclick="openContext(
+                'Os Fundadores e Revolucionários da Internet (1969 - 1980)',
+                'Vint Cerf, Bob Kahn & Radia Perlman',
+                'Até o final da década de 1960, os computadores operavam como ilhas lógicas isoladas. O compartilhamento de arquivos entre duas máquinas distantes dependia do transporte manual de fitas magnéticas ou cartões perfurados.\n\nPara resolver essa limitação logística militar e acadêmica durante a Guerra Fria, a Agência de Projetos de Pesquisa Avançada dos EUA (DARPA) financiou a ARPANET. Os cientistas de computação Robert (Bob) Kahn e Vinton (Vint) Cerf criaram e padronizaram na década de 1970 os protocolos TCP/IP (Transmission Control Protocol / Internet Protocol). Essa arquitetura revolucionou as comunicações ao quebrar os arquivos brutos em pequenos "pacotes" de dados independentes transmitidos por cabos de rede e remontados na máquina de destino.',
+                'À medida que essa rede cresceu e se ramificou com milhares de computadores conectados ao mesmo tempo, um problema estrutural surgiu: os roteadores e pontes de dados geravam "loops de transmissão". Os pacotes de informação ficavam circulando em círculos eternos na rede de fios, congestionando a largura de banda e derrubando servidores mundiais inteiros.\n\nA engenheira e designer de redes americana Radia Perlman resolveu essa falha estrutural de forma brilhante em 1985 ao inventar o algoritmo e protocolo STP (Spanning Tree Protocol). O STP funciona como um policial lógico inteligente de tráfego de dados: ele analisa os caminhos físicos da rede, identifica rotas redundantes perigosas e desativa caminhos extras temporariamente, criando um mapa em árvore limpo e sem loops.',
+                'Vint Cerf e Bob Kahn criaram o idioma comum da internet (TCP/IP), enquanto Radia Perlman inventou o mecanismo de tráfego estável (STP), tornando-a mundialmente conhecida como a "Mãe da Internet".'
+            )">
+                <span class="era-badge">Anos 1970 - 1980 • Redes Centrais</span>
+                <h2>Os Arquitetos da Infraestrutura Web</h2>
+                <h3>Vint Cerf, Bob Kahn & Radia Perlman</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Radia_Perlman_by_B_A_Mah_2009.jpg" alt="Radia Perlman">
+                </div>
+                <p class="intro-text">O protocolo de pacotes TCP/IP cria a rede mundial e o algoritmo de Radia Perlman estabiliza o tráfego de dados global.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/TCP/IP" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 7: WWW -->
+        <div class="container left">
+            <div class="card" onclick="openContext(
+                'A Criação da World Wide Web Comercial (1989 - 1995)',
+                'Sir Tim Berners-Lee & Marc Andreessen',
+                'Embora a rede de computadores e a internet física já funcionassem através do protocolo TCP/IP no final dos anos 1980, o acesso à rede era extremamente difícil. A navegação era restrita a acadêmicos de laboratórios que digitavam comandos textuais complexos em telas escuras de terminais para ler arquivos puros, sem nenhuma formatação visual, imagens ou facilidades de busca.',
+                'Em 1989, operando nos laboratórios do CERN na Suíça, o cientista britânico Sir Tim Berners-Lee revolucionou a história ao inventar a World Wide Web (WWW). Ele idealizou um ecossistema integrado unificado baseado em três tecnologias fundamentais: o protocolo HTTP (para transferir dados), a linguagem HTML (para formatar e criar as páginas com hipertextos e links clicáveis) e a estrutura de URLs (os endereços virtuais únicos). Tim Berners-Lee tomou a decisão altruísta de abrir mão de patentes, disponibilizando o código da Web de graça para o planeta.\n\nPouco depois, em 1993, o estudante Marc Andreessen liderou a equipe que desenvolveu o Mosaic — o primeiríssimo navegador web gráfico de massa, capaz de renderizar e exibir fotos coloridas dentro da própria página de texto, dando início ao estouro da internet comercial.',
+                'Tim Berners-Lee inventou a teia lógica e os códigos da Web, transformando a internet militar abstrata em uma interface acessível e de uso diário pela sociedade mundial.'
+            )">
+                <span class="era-badge">Anos 1990 • Interface Gráfica</span>
+                <h2>A Criação da World Wide Web</h2>
+                <h3>Sir Tim Berners-Lee & Marc Andreessen</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Sir_Tim_Berners-Lee_unveils_the_World_Wide_Web_at_CERN_in_1990.jpg" alt="Sir Tim Berners-Lee no CERN">
+                </div>
+                <p class="intro-text">O código aberto do HTML, HTTP e das páginas da Web abre o tráfego multimídia para toda a sociedade mundial.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://pt.wikipedia.org/wiki/World_Wide_Web" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARCO 8: INTELIGÊNCIA ARTIFICIAL -->
+        <div class="container right">
+            <div class="card" onclick="openContext(
+                'Visão Computacional e Inteligência Artificial (Século XXI - Hoje)',
+                'Dra. Fei-Fei Li & Os Pioneiros das Redes Neurais',
+                'No início do século XXI, os computadores deixaram de ser equipamentos fixos graças aos Smartphones e à Computação em Nuvem em escala massiva. Bilhões de usuários gerando arquivos multimídia deram origem ao Big Data. O desafio mudou radicalmente: os computadores precisavam deixar de apenas processar números e aprender a compreender o contexto de imagens, vozes e tomar decisões complexas de forma independente.',
+                'A cientista da computação e professora da Universidade de Stanford, Dra. Fei-Fei Li, revolucionou o campo da Inteligência Artificial ao quebrar um paradigma de pesquisa em 2006. Enquanto a maioria das equipes acadêmicas tentava criar algoritmos matemáticos perfeitos isolados, a Dra. Fei-Fei percebeu que as redes neurais artificiais precisavam de combustível de alta qualidade para treinar sua percepção computacional.\n\nEla idealizou e liderou o desenvolvimento do projeto ImageNet — um banco de dados monumental contendo mais de 14 milhões de imagens organizadas e catalogadas manualmente com etiquetas detalhadas de dados. Esse conjunto de dados deu o suporte prático que permitiu o treinamento exato de algoritmos de aprendizado profundo (Deep Learning), resultando na explosão atual dos modelos de IA generativa de alta velocidade.',
+                'O banco de dados de Fei-Fei Li estruturou e destravou o avanço global da Visão Computacional, servindo como a engrenagem base que sustenta os assistentes inteligentes de IA de última geração.'
+            )">
+                <span class="era-badge">Século XXI • Deep Learning</span>
+                <h2>Redes Conectadas e Inteligência Artificial</h2>
+                <h3>Dra. Fei-Fei Li & Engenharia Moderna de IA</h3>
+                <div class="image-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Fei-Fei_Li_World_Economic_Forum_2017.jpg" alt="Dra. Fei-Fei Li">
+                </div>
+                <p class="intro-text">A transição definitiva para os sistemas preditivos, computação em nuvem onipresente e redes de aprendizado de máquina.</p>
+                <div class="btn-group" onclick="event.stopPropagation();">
+                    <button class="btn-more">Estudar Documentação</button>
+                    <a href="https://en.wikipedia.org/wiki/Fei-Fei_Li" target="_blank" class="btn-link">Ver Biografia Completa</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- INTERFACE DO MODAL DE LEITURA ACADÊMICA -->
+    <div id="infoModal" class="modal" onclick="closeOutside(event)">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeContext()">&times;</span>
+            <div class="modal-body">
+                <h2 id="mTitle"></h2>
+                <h3 id="mSub"></h3>
+                
+                <h4>Contexto Histórico e Engenharia de Hardware</h4>
+                <p id="mContext"></p>
+                
+                <h4>O Papel dos Homens e Mulheres Protagonistas</h4>
+                <p id="mRole"></p>
+                
+                <div id="mLegacy" class="highlight-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('infoModal');
+        const mTitle = document.getElementById('mTitle');
+        const mSub = document.getElementById('mSub');
+        const mContext = document.getElementById('mContext');
+        const mRole = document.getElementById('mRole');
+        const mLegacy = document.getElementById('mLegacy');
+
+        function openContext(title, sub, contextText, roleText, legacyText) {
+            mTitle.innerText = title;
+            mSub.innerText = "Mentes Revolucionárias: " + sub;
+            mContext.innerText = contextText;
+            mRole.innerText = roleText;
+            mLegacy.innerText = "🏆 Impacto Definitivo na História: " + legacyText;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeContext() {
+            modal.style.display = 'none';
+        }
+
+        function closeOutside(event) {
+            if (event.target === modal) {
+                closeContext();
+            }
+        }
+    </script>
+</body>
+</html>
